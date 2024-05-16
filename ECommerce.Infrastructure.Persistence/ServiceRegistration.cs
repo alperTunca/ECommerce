@@ -15,9 +15,7 @@ namespace ECommerce.Infrastructure.Persistence
         {
 
             #region AppSettings.json
-            // configuration paketi sayesinde bu gelir
             ConfigurationManager configuration = new();
-            // Configuration.json paketi sayesinde bu methodlar eklenir
             configuration.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../ECommerce.Presentation.API"));
             configuration.AddJsonFile("appsettings.json");
             #endregion
