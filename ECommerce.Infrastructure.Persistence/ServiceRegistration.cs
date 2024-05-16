@@ -1,4 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ECommerce.Core.Application.Repositories.OrderCommentRepositories;
+using ECommerce.Core.Application.Repositories.OrderRepositories;
+using ECommerce.Core.Application.Repositories.UserRepositories;
+using ECommerce.Infrastructure.Persistence.Repositories.OrderCommentRepositories;
+using ECommerce.Infrastructure.Persistence.Repositories.OrderRepositories;
+using ECommerce.Infrastructure.Persistence.Repositories.UserRepositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -26,7 +32,14 @@ namespace ECommerce.Infrastructure.Persistence
             #region Repositories
             // AddDbCOntext work as AddScoped
             // So repositories can be add using AddScoped (her request için nesne oluşturur ve iş bitince dispose eder)
+            services.AddScoped<IUserReadRepository, UserReadRepository>();
+            services.AddScoped<IUserWriteRepository, UserWriteRepository>();
 
+            services.AddScoped<IOrderReadRepository, OrderReadRepository>();
+            services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
+
+            services.AddScoped<IOrderCommentReadRepository, OrderCommentReadRepository>();
+            services.AddScoped<IOrderCommentWriteRepository, OrderCommentWriteRepository>();
             #endregion
         }
     }
