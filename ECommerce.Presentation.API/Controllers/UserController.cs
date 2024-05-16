@@ -16,10 +16,29 @@ namespace ECommerce.Presentation.API.Controllers
             _userWriteRepo = userWriteRepo;
         }
 
+        [HttpPost]
+        public IActionResult Create()
+        {
+            return Ok();
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("1");
+            var list = _userReadRepo.GetAll();
+            return Ok(list);
+        }
+
+        [HttpPut]
+        public IActionResult Update()
+        {
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete()
+        {
+            return Ok();
         }
     }
 }

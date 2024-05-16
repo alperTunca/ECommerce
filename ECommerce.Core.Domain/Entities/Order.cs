@@ -20,11 +20,13 @@ namespace ECommerce.Core.Domain.Entities
         public int Carrier { get; set; } // Carrier Company Code
         //public int UserId { get; set; }
 
+        // TODO - Test
         // An order can belong to an user 
         [ForeignKey("User")]
         public int UserId { get; set; }
         public User User { get; set; }
 
+        // TODO - Test
         // An order can have more than one ordercomment
         public List<OrderComment> OrderComments { get; set; }
     }

@@ -13,11 +13,13 @@ namespace ECommerce.Core.Domain.Entities
         //public int UserId { get; set; }
         public string Comment { get; set; }
 
+        // TODO - Test
         // An ordercomment can belong to an order 
         [ForeignKey("Order")]
         public int OrderId { get; set; }
         public Order Order { get; set; }
 
+        // TODO - Test
         // An ordercomment can belong to an user 
         [ForeignKey("User")]
         public int UserId { get; set; }
