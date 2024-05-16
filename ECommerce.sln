@@ -5,6 +5,12 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Core.Domain", "ECommerce.Core.Domain\ECommerce.Core.Domain.csproj", "{3CFDD9C4-2BD9-4FD0-8776-A619C09F1BC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Core.Application", "ECommerce.Core.Application\ECommerce.Core.Application.csproj", "{F91BF16B-D19A-4EB9-A652-A82569E7A52E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Infrastructure.Persistence", "ECommerce.Infrastructure.Persistence\ECommerce.Infrastructure.Persistence.csproj", "{00021EE3-2E54-4B0F-A2B3-44DBB463AB5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Presentation.API", "ECommerce.Presentation.API\ECommerce.Presentation.API.csproj", "{ACC134E0-DACA-4082-906D-631A5AD60E49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{3CFDD9C4-2BD9-4FD0-8776-A619C09F1BC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CFDD9C4-2BD9-4FD0-8776-A619C09F1BC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CFDD9C4-2BD9-4FD0-8776-A619C09F1BC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F91BF16B-D19A-4EB9-A652-A82569E7A52E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F91BF16B-D19A-4EB9-A652-A82569E7A52E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F91BF16B-D19A-4EB9-A652-A82569E7A52E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F91BF16B-D19A-4EB9-A652-A82569E7A52E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00021EE3-2E54-4B0F-A2B3-44DBB463AB5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00021EE3-2E54-4B0F-A2B3-44DBB463AB5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00021EE3-2E54-4B0F-A2B3-44DBB463AB5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00021EE3-2E54-4B0F-A2B3-44DBB463AB5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACC134E0-DACA-4082-906D-631A5AD60E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACC134E0-DACA-4082-906D-631A5AD60E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACC134E0-DACA-4082-906D-631A5AD60E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACC134E0-DACA-4082-906D-631A5AD60E49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
