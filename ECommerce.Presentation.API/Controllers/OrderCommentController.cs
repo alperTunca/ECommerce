@@ -6,6 +6,7 @@ namespace ECommerce.Presentation.API.Controllers
     [ApiController]
     public class OrderCommentController : ControllerBase
     {
+        [HttpGet]
         public IActionResult Get()
         {
             return Ok("1");
