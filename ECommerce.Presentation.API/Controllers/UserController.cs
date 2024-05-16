@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ECommerce.Core.Application.Repositories.UserRepositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Presentation.API.Controllers
 {
@@ -6,6 +7,15 @@ namespace ECommerce.Presentation.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly IUserReadRepository _userReadRepo;
+        private readonly IUserWriteRepository _userWriteRepo;
+
+        public UserController(IUserReadRepository userReadRepo, IUserWriteRepository userWriteRepo)
+        {
+            _userReadRepo = userReadRepo;
+            _userWriteRepo = userWriteRepo;
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
