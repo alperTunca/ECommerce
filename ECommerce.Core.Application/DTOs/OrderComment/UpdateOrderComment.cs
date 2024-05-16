@@ -8,5 +8,9 @@ namespace ECommerce.Core.Application.DTOs.OrderComment
 {
     public class UpdateOrderComment
     {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int OrderId { get; set; }
+        public string Comment { get; set; }
     }
 }

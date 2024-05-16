@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Core.Application.DTOs.OrderComment
 {
-    public class CreateOrderComment
+    public class ListOrderComment
     {
         public int UserId { get; set; }
         public int OrderId { get; set; }
