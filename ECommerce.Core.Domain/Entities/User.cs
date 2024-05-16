@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,5 +15,8 @@ namespace ECommerce.Core.Domain.Entities
 
         // An user can have more than one order
         public List<Order> Orders { get; set; }
+
+        // An ordercomment can belong to an user
+        public OrderComment OrderComment { get; set; }
     }
 }
