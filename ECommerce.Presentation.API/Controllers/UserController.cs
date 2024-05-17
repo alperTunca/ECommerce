@@ -1,9 +1,11 @@
-﻿using ECommerce.Core.Application.Repositories.UserRepositories;
+﻿using ECommerce.Core.Application.DTOs.User;
+using ECommerce.Core.Application.Repositories.UserRepositories;
+using ECommerce.Core.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Presentation.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -17,20 +19,28 @@ namespace ECommerce.Presentation.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create()
+        public async Task<IActionResult> Create(CreateUser createUser)
         {
+            var data = new User
+            {
+                Username = createUser.Username,
+                Email = createUser.Email,
+                Password = createUser.Password
+            };
+            await _userWriteRepo.AddAsync(data);
+            await _userWriteRepo.SaveAsync();
             return Ok();
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             var list = _userReadRepo.GetAll();
             return Ok(list);
         }
 
         [HttpPut]
-        public IActionResult Update()
+        public IActionResult Update(UpdateUser updateUser)
         {
             return Ok();
         }
