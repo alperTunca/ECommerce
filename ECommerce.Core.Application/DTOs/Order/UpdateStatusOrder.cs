@@ -5,20 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.Core.Application.DTOs.OrderComment
+namespace ECommerce.Core.Application.DTOs.Order
 {
-    public class UpdateOrderComment
+    public class UpdateStatusOrder
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage = "Hesap bilgisi giriniz.")]
         public int AccountId { get; set; }
 
-        [Required(ErrorMessage = "Kullanıcı bilgisi giriniz.")]
-        public int UserId { get; set; }
-
         [Required(ErrorMessage = "Sipariş numarası giriniz.")]
-        public int OrderId { get; set; }
-        public string Comment { get; set; }
+        public int OrderNumber { get; set; }
     }
 }
