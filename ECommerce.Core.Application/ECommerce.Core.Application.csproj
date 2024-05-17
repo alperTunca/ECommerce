@@ -15,4 +15,10 @@
     <ProjectReference Include="..\ECommerce.Core.Domain\ECommerce.Core.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Validators\Order\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Validators\Order\" />
+  </ItemGroup>
 </Project>
