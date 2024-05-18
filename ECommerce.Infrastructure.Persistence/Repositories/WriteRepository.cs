@@ -38,6 +38,7 @@ namespace ECommerce.Infrastructure.Persistence.Repositories
             EntityEntry<T> eEntry = Table.Remove(entity);
             return eEntry.State == EntityState.Deleted;
         }
+
         public bool RemoveRange(List<T> entities)
         {
             Table.RemoveRange(entities);

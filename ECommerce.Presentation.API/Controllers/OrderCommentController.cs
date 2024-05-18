@@ -40,8 +40,16 @@ namespace ECommerce.Presentation.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(UpdateOrderComment updateOrderComment)
+        public async Task<IActionResult> Update(UpdateOrderComment updateOrderComment)
         {
+            var data = new OrderComment
+            {
+                UserId = updateOrderComment.UserId,
+                OrderId = updateOrderComment.OrderId,
+                Comment = updateOrderComment.Comment
+            };
+            _orderCommentWriteRepo.Update(data);
+            await _orderCommentWriteRepo.SaveAsync();
             return Ok();
         }
 
