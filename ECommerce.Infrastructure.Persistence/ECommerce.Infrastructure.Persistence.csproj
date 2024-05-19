@@ -22,4 +22,10 @@
     <ProjectReference Include="..\ECommerce.Core.Domain\ECommerce.Core.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
 </Project>
