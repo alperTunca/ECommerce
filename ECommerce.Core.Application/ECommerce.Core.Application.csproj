@@ -9,6 +9,10 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.9.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.19" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,8 +21,58 @@
 
   <ItemGroup>
     <None Remove="Validators\Order\" />
+    <None Remove="Mediatr\" />
+    <None Remove="Mediatr\Commands\" />
+    <None Remove="Mediatr\Queries\" />
+    <None Remove="Mediatr\Queries\Order\" />
+    <None Remove="Mediatr\Queries\User\" />
+    <None Remove="Mediatr\Queries\Order\GetAll\" />
+    <None Remove="Mediatr\Queries\User\GetAll\" />
+    <None Remove="Mediatr\Queries\User\GetById\" />
+    <None Remove="Mediatr\Queries\Order\GetById\" />
+    <None Remove="Mediatr\Queries\OrderComment\" />
+    <None Remove="Mediatr\Queries\OrderComment\GetAll\" />
+    <None Remove="Mediatr\Queries\OrderComment\GetById\" />
+    <None Remove="Mediatr\Commands\Order\" />
+    <None Remove="Mediatr\Commands\OrderComment\" />
+    <None Remove="Mediatr\Commands\User\" />
+    <None Remove="Mediatr\Commands\Order\Create\" />
+    <None Remove="Mediatr\Commands\Order\Update\" />
+    <None Remove="Mediatr\Commands\Order\Delete\" />
+    <None Remove="Mediatr\Commands\OrderComment\Create\" />
+    <None Remove="Mediatr\Commands\OrderComment\Update\" />
+    <None Remove="Mediatr\Commands\OrderComment\Delete\" />
+    <None Remove="Mediatr\Commands\User\Delete\" />
+    <None Remove="Mediatr\Commands\User\Create\" />
+    <None Remove="Mediatr\Commands\User\Update\" />
+    <None Remove="Mapper\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Validators\Order\" />
+    <Folder Include="Mediatr\" />
+    <Folder Include="Mediatr\Commands\" />
+    <Folder Include="Mediatr\Queries\" />
+    <Folder Include="Mediatr\Queries\Order\" />
+    <Folder Include="Mediatr\Queries\User\" />
+    <Folder Include="Mediatr\Queries\Order\GetAll\" />
+    <Folder Include="Mediatr\Queries\User\GetAll\" />
+    <Folder Include="Mediatr\Queries\User\GetById\" />
+    <Folder Include="Mediatr\Queries\Order\GetById\" />
+    <Folder Include="Mediatr\Queries\OrderComment\" />
+    <Folder Include="Mediatr\Queries\OrderComment\GetAll\" />
+    <Folder Include="Mediatr\Queries\OrderComment\GetById\" />
+    <Folder Include="Mediatr\Commands\Order\" />
+    <Folder Include="Mediatr\Commands\OrderComment\" />
+    <Folder Include="Mediatr\Commands\User\" />
+    <Folder Include="Mediatr\Commands\Order\Create\" />
+    <Folder Include="Mediatr\Commands\Order\Update\" />
+    <Folder Include="Mediatr\Commands\Order\Delete\" />
+    <Folder Include="Mediatr\Commands\OrderComment\Create\" />
+    <Folder Include="Mediatr\Commands\OrderComment\Update\" />
+    <Folder Include="Mediatr\Commands\OrderComment\Delete\" />
+    <Folder Include="Mediatr\Commands\User\Delete\" />
+    <Folder Include="Mediatr\Commands\User\Create\" />
+    <Folder Include="Mediatr\Commands\User\Update\" />
+    <Folder Include="Mapper\" />
   </ItemGroup>
 </Project>
