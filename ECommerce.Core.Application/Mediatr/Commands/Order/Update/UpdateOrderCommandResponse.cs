@@ -3,9 +3,7 @@ namespace ECommerce.Core.Application.Mediatr.Commands.Order.Update
 {
 	public class UpdateOrderCommandResponse
 	{
-		public UpdateOrderCommandResponse()
-		{
-		}
+		public bool IsSuccess { get; set; }
 	}
 }
 

@@ -46,6 +46,10 @@
     <None Remove="Mediatr\Commands\User\Create\" />
     <None Remove="Mediatr\Commands\User\Update\" />
     <None Remove="Mapper\" />
+    <None Remove="Repositories\" />
+    <None Remove="Abstractions\" />
+    <None Remove="Abstractions\Services\" />
+    <None Remove="Mediatr\Commands\Order\UpdateStatus\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Validators\Order\" />
@@ -74,5 +78,9 @@
     <Folder Include="Mediatr\Commands\User\Create\" />
     <Folder Include="Mediatr\Commands\User\Update\" />
     <Folder Include="Mapper\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Abstractions\" />
+    <Folder Include="Abstractions\Services\" />
+    <Folder Include="Mediatr\Commands\Order\UpdateStatus\" />
   </ItemGroup>
 </Project>

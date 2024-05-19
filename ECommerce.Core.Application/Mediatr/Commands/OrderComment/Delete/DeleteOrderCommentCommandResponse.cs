@@ -3,9 +3,7 @@ namespace ECommerce.Core.Application.Mediatr.Commands.OrderComment.Delete
 {
 	public class DeleteOrderCommentCommandResponse
 	{
-		public DeleteOrderCommentCommandResponse()
-		{
-		}
+		public bool IsSuccess { get; set; }
 	}
 }
 

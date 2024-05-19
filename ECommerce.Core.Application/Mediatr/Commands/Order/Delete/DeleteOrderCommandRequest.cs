@@ -1,11 +1,11 @@
 ﻿using System;
+using MediatR;
+
 namespace ECommerce.Core.Application.Mediatr.Commands.Order.Delete
 {
-	public class DeleteOrderCommandRequest
+	public class DeleteOrderCommandRequest : IRequest<DeleteOrderCommandResponse>
 	{
-		public DeleteOrderCommandRequest()
-		{
-		}
+		public int Id { get; set; }
 	}
 }
 

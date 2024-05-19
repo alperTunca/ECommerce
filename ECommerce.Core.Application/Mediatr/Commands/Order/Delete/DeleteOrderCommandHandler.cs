@@ -1,11 +1,23 @@
 ﻿using System;
+using ECommerce.Core.Application.Abstractions.Services;
+using MediatR;
+
 namespace ECommerce.Core.Application.Mediatr.Commands.Order.Delete
 {
-	public class DeleteOrderCommandHandler
+	public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommandRequest, DeleteOrderCommandResponse>
 	{
-		public DeleteOrderCommandHandler()
+		private readonly IOrderService _orderService;
+
+		public DeleteOrderCommandHandler(IOrderService orderService)
 		{
+			_orderService = orderService;
 		}
-	}
+
+        public async Task<DeleteOrderCommandResponse> Handle(DeleteOrderCommandRequest request, CancellationToken cancellationToken)
+        {
+			var result = await _orderService.DeleteAsync(request.Id);
+			return new() { IsSuccess = result };
+        }
+    }
 }
 
