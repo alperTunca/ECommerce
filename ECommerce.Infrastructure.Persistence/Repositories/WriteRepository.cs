@@ -39,12 +39,6 @@ namespace ECommerce.Infrastructure.Persistence.Repositories
             return eEntry.State == EntityState.Deleted;
         }
 
-        public bool RemoveRange(List<T> entities)
-        {
-            Table.RemoveRange(entities);
-            return true;
-        }
-
         public async Task<bool> Remove(int id)
         {
             var entity = await Table.FirstOrDefaultAsync(x => x.Id == id);

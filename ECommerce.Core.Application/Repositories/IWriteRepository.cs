@@ -12,7 +12,6 @@ namespace ECommerce.Core.Application.Repositories
         Task<bool> AddAsync(T entity);
         Task<bool> AddRangeAsync(List<T> entities);
         bool Remove(T entity);
-        bool RemoveRange(List<T> entities);
         Task<bool> Remove(int id);
         bool Update(T entity);
         Task<int> SaveAsync();
