@@ -6,7 +6,7 @@ namespace ECommerce.Core.Application.Abstractions.Services
 	public interface IOrderService
     {
         Task<bool> CreateAsync(CreateOrder createOrder);
-        Task<ListOrder> GetAllAsync();
+        ListOrder GetAll();
         Task<SingleOrder> GetByIdAsync(int id);
         Task<bool> UpdateAsync(UpdateOrder updateOrder);
         Task<bool> DeleteAsync(int id);
