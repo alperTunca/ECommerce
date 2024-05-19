@@ -1,6 +1,7 @@
 ﻿using ECommerce.Core.Application.DTOs.User;
 using ECommerce.Core.Application.Repositories.UserRepositories;
 using ECommerce.Core.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Presentation.API.Controllers
@@ -9,26 +10,17 @@ namespace ECommerce.Presentation.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserReadRepository _userReadRepo;
-        private readonly IUserWriteRepository _userWriteRepo;
+        private readonly IMediator _mediator;
 
-        public UserController(IUserReadRepository userReadRepo, IUserWriteRepository userWriteRepo)
+        public UserController(IMediator mediator)
         {
-            _userReadRepo = userReadRepo;
-            _userWriteRepo = userWriteRepo;
+            _mediator = mediator;
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateUser createUser)
         {
-            var data = new User
-            {
-                Username = createUser.Username,
-                Email = createUser.Email,
-                Password = createUser.Password
-            };
-            await _userWriteRepo.AddAsync(data);
-            await _userWriteRepo.SaveAsync();
+            var user = _mediator.Send(createUser);
             return Ok();
         }
 

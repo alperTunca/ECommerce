@@ -6,9 +6,6 @@ using ECommerce.Core.Domain.Entities;
 using ECommerce.Infrastructure.Persistence;
 using ECommerce.Infrastructure.Service.Filters;
 using FluentValidation;
-using FluentValidation.AspNetCore;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
