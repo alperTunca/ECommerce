@@ -28,10 +28,6 @@ namespace ECommerce.Infrastructure.Persistence
             .HasConversion<int>(); // Enum store as int 
 
             modelBuilder.Entity<Order>()
-            .HasIndex(o => o.AccountId)
-            .IsUnique();
-
-            modelBuilder.Entity<Order>()
            .HasIndex(o => o.OrderNumber)
            .IsUnique();
 
@@ -53,7 +49,6 @@ namespace ECommerce.Infrastructure.Persistence
                 {
                     case EntityState.Added:
                         entity.Entity.CreatedAt = DateTime.UtcNow;
-                        entity.Entity.IsDeleted = false;
                         break;
                     case EntityState.Modified:
                         entity.Entity.UpdatedAt = DateTime.UtcNow;
