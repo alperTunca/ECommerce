@@ -3,7 +3,7 @@
 Açıklama: Bir E-Ticaret satıcısı kendi web sitesinde ürünlerini satmaktadır. Siparişler web sitesi api lerinden belli aralıklara çekilecektir. Çekilen siparişler için not(comment) ekleyen bir api geliştirmesi yapılacaktır.
 1.	Siparişleri çekip order_table a yazacak bir servis yazın. İl sipariş statüsü “received” olacaktır
 2.	Order_comment tablosuna account_id , user_id , order_id inputları zorunlu olacak şekilde comment ekleyen , değiştiren ve silen bir web service yazın. 
-3.	Sipariş durumlarını güncellemek için account_id, order_number inputları olacak şekilde bir web service yazın. 
+3.	Sipariş durumlarını güncellemek için account_id, order_number, order_status inputları olacak şekilde bir web service yazın. 
 
 ****---Entities---****
 
