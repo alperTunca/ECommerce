@@ -58,9 +58,6 @@ namespace ECommerce.Infrastructure.Persistence
                     case EntityState.Modified:
                         entity.Entity.UpdatedAt = DateTime.UtcNow;
                         break;
-                    case EntityState.Deleted:
-                        entity.Entity.IsDeleted = true;
-                        break;
                     default:
                         break;
                 }
