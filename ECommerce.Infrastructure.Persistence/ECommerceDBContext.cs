@@ -1,4 +1,5 @@
 ﻿using ECommerce.Core.Domain.Entities;
+using ECommerce.Core.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,15 +26,17 @@ namespace ECommerce.Infrastructure.Persistence
         {
             modelBuilder.Entity<Order>()
             .Property(o => o.Status)
-            .HasConversion<int>(); // Enum store as int 
+            .HasConversion<int>()
+            .HasDefaultValue(OrderStatus.Received); // Enum store as int 
 
             modelBuilder.Entity<Order>()
            .HasIndex(o => o.OrderNumber)
            .IsUnique();
 
             modelBuilder.Entity<Order>()
-                .Property(o => o.OrderType)
-                .HasDefaultValue("B2C");
+            .Property(o => o.OrderType)
+            .HasConversion<int>()
+            .HasDefaultValue(OrderType.B2C); // Enum store as int 
 
             base.OnModelCreating(modelBuilder);
         }
