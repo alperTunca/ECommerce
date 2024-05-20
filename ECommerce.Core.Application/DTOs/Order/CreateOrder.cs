@@ -12,8 +12,8 @@ namespace ECommerce.Core.Application.DTOs.Order
         public int AccountId { get; set; }
         public int OrderNumber { get; set; }
         public DateTime OrderDate { get; set; }
-        public string OrderType { get; set; } // Default B2C
-        public int Status { get; set; } // Received InProgress Pick Pack Ship Delivered
+        public string OrderType { get; set; } 
+        public int Status { get; set; }
         public int SalesChannel { get; set; }
         public int City { get; set; }
         public int District { get; set; }
