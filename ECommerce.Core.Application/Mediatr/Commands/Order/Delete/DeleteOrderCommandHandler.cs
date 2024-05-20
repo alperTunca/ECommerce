@@ -15,8 +15,8 @@ namespace ECommerce.Core.Application.Mediatr.Commands.Order.Delete
 
         public async Task<DeleteOrderCommandResponse> Handle(DeleteOrderCommandRequest request, CancellationToken cancellationToken)
         {
-			var result = await _orderService.DeleteAsync(request.Id);
-			return new() { IsSuccess = result };
+			await _orderService.DeleteAsync(request.Id);
+			return new() { IsSuccess = true };
         }
     }
 }

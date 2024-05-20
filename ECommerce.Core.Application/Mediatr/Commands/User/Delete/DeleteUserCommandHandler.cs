@@ -15,8 +15,8 @@ namespace ECommerce.Core.Application.Mediatr.Commands.User.Delete
 
         public async Task<DeleteUserCommandResponse> Handle(DeleteUserCommandRequest request, CancellationToken cancellationToken)
         {
-			var result = await _userService.DeleteAsync(request.Id);
-			return new() { IsSuccess = result };
+			await _userService.DeleteAsync(request.Id);
+			return new() { IsSuccess = true };
         }
     }
 }

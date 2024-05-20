@@ -24,6 +24,7 @@ namespace ECommerce.Core.Application.Mapper
             CreateMap<CreateOrder, Order>();
             CreateMap<List<Order>, ListOrder>();
             CreateMap<Order, SingleOrder>();
+            CreateMap<CreateOrderComment, OrderComment>();
         }
 	}
 }
