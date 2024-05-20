@@ -1,6 +1,5 @@
 ﻿using System;
 using AutoMapper;
-using ECommerce.Core.Application.Abstractions.Services;
 using ECommerce.Core.Application.DTOs.OrderComment;
 using ECommerce.Core.Application.Repositories.OrderCommentRepositories;
 using ECommerce.Core.Application.Repositories.OrderRepositories;
