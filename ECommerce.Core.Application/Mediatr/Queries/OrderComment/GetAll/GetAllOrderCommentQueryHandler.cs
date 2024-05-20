@@ -8,6 +8,11 @@ namespace ECommerce.Core.Application.Mediatr.Queries.OrderComment.GetAll
 	{
 		private readonly IOrderCommentReadRepository _orderCommentReadRepository;
 
+        public GetAllOrderCommentQueryHandler(IOrderCommentReadRepository orderCommentReadRepository)
+        {
+            _orderCommentReadRepository = orderCommentReadRepository;
+        }
+
         public async Task<GetAllOrderCommentQueryResponse> Handle(GetAllOrderCommentQueryRequest request, CancellationToken cancellationToken)
         {
             var data = _orderCommentReadRepository.GetAll();

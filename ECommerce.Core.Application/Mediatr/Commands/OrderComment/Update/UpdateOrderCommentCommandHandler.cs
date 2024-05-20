@@ -28,6 +28,7 @@ namespace ECommerce.Core.Application.Mediatr.Commands.OrderComment.Update
             data.AccountId = request.AccountId;
             data.OrderId = request.OrderId;
             data.UserId = request.UserId;
+            data.Comment = request.Comment;
             _orderCommentWriteRepository.Update(data);
             await _orderCommentWriteRepository.SaveAsync();
             result = true;

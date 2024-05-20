@@ -1,14 +1,18 @@
-﻿using System;
-using ECommerce.Core.Application.DTOs.Order;
-using ECommerce.Core.Application.Mediatr.Commands.Order.UpdateStatus;
+﻿using ECommerce.Core.Application.Mediatr.Commands.Order.Create;
+using ECommerce.Core.Application.Mediatr.Commands.Order.Update;
 using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ECommerce.Core.Application.Validators.Order
 {
-	public class UpdateStatusOrderValidator : AbstractValidator<UpdateStatusOrderCommandRequest>
-	{
-		public UpdateStatusOrderValidator()
-		{
+    public class UpdateOrderValidator : AbstractValidator<UpdateOrderCommandRequest>
+    {
+        public UpdateOrderValidator()
+        {
             RuleFor(x => x.AccountId)
                 .NotEmpty()
                 .WithMessage("Hesap bilgisini doldurunuz.")
@@ -30,4 +34,3 @@ namespace ECommerce.Core.Application.Validators.Order
         }
     }
 }
-

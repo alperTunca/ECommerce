@@ -51,7 +51,6 @@
     <None Remove="Mediatr\Commands\Order\UpdateStatus\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Validators\Order\" />
     <Folder Include="Mediatr\" />
     <Folder Include="Mediatr\Commands\" />
     <Folder Include="Mediatr\Queries\" />

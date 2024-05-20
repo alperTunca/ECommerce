@@ -22,7 +22,6 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                     Email = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -39,15 +38,14 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                     AccountId = table.Column<int>(type: "integer", nullable: false),
                     OrderNumber = table.Column<int>(type: "integer", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    OrderType = table.Column<string>(type: "text", nullable: false, defaultValue: "B2C"),
-                    Status = table.Column<int>(type: "integer", nullable: false),
-                    SalesChannel = table.Column<int>(type: "integer", nullable: false),
+                    OrderType = table.Column<int>(type: "integer", nullable: false, defaultValue: 1),
+                    Status = table.Column<int>(type: "integer", nullable: false, defaultValue: 1),
+                    SalesChannel = table.Column<string>(type: "text", nullable: false),
                     City = table.Column<int>(type: "integer", nullable: false),
                     District = table.Column<int>(type: "integer", nullable: false),
                     Carrier = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -72,7 +70,6 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                     OrderId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -104,15 +101,9 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_AccountId",
+                name: "IX_Orders_OrderNumber_AccountId",
                 table: "Orders",
-                column: "AccountId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_OrderNumber",
-                table: "Orders",
-                column: "OrderNumber",
+                columns: new[] { "OrderNumber", "AccountId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(

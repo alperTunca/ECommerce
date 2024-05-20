@@ -30,7 +30,7 @@ namespace ECommerce.Infrastructure.Persistence
             .HasDefaultValue(OrderStatus.Received); // Enum store as int 
 
             modelBuilder.Entity<Order>()
-           .HasIndex(o => o.OrderNumber)
+           .HasIndex(o => new { o.OrderNumber, o.AccountId })
            .IsUnique();
 
             modelBuilder.Entity<Order>()

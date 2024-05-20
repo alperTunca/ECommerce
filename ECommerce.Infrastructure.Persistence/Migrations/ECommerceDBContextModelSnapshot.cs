@@ -51,17 +51,19 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                     b.Property<int>("OrderNumber")
                         .HasColumnType("integer");
 
-                    b.Property<string>("OrderType")
-                        .IsRequired()
+                    b.Property<int>("OrderType")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
-                        .HasDefaultValue("B2C");
+                        .HasColumnType("integer")
+                        .HasDefaultValue(1);
 
-                    b.Property<int>("SalesChannel")
-                        .HasColumnType("integer");
+                    b.Property<string>("SalesChannel")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("Status")
-                        .HasColumnType("integer");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(1);
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -71,10 +73,10 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderNumber")
-                        .IsUnique();
-
                     b.HasIndex("UserId");
+
+                    b.HasIndex("OrderNumber", "AccountId")
+                        .IsUnique();
 
                     b.ToTable("Orders");
                 });
