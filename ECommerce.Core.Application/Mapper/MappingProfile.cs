@@ -13,6 +13,7 @@ namespace ECommerce.Core.Application.Mapper
 	{
 		public MappingProfile()
         {
+            CreateMap<CreateUserCommandRequest, CreateUser>();
             CreateMap<CreateUser, User>();
             CreateMap<List<User>, ListUser>();
             CreateMap<Order, SingleUser>();

@@ -1,9 +1,11 @@
-﻿using ECommerce.Core.Application.Repositories.OrderCommentRepositories;
+﻿using ECommerce.Core.Application.Abstractions.Services;
+using ECommerce.Core.Application.Repositories.OrderCommentRepositories;
 using ECommerce.Core.Application.Repositories.OrderRepositories;
 using ECommerce.Core.Application.Repositories.UserRepositories;
 using ECommerce.Infrastructure.Persistence.Repositories.OrderCommentRepositories;
 using ECommerce.Infrastructure.Persistence.Repositories.OrderRepositories;
 using ECommerce.Infrastructure.Persistence.Repositories.UserRepositories;
+using ECommerce.Infrastructure.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +42,12 @@ namespace ECommerce.Infrastructure.Persistence
 
             services.AddScoped<IOrderCommentReadRepository, OrderCommentReadRepository>();
             services.AddScoped<IOrderCommentWriteRepository, OrderCommentWriteRepository>();
+            #endregion
+
+            #region Services
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IOrderCommentService, OrderCommentService>();
             #endregion
         }
     }

@@ -27,7 +27,7 @@ namespace ECommerce.Presentation.API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(list);
+            return Ok();
         }
 
         [HttpPut]

@@ -4,6 +4,7 @@ using ECommerce.Core.Application.Abstractions.Services;
 using ECommerce.Core.Application.DTOs.Order;
 using ECommerce.Core.Application.Repositories.OrderRepositories;
 using ECommerce.Core.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Infrastructure.Persistence.Services
 {
@@ -67,7 +68,7 @@ namespace ECommerce.Infrastructure.Persistence.Services
 
         public async Task UpdateStatusAsync(UpdateStatusOrder updateOrderStatus)
         {
-            var data = await _orderReadRepository.GetByIdAsync(updateOrderStatus.Id);
+            var data = await _orderReadRepository.GetWhere(x => x.AccountId == updateOrderStatus.AccountId && x.OrderNumber == updateOrderStatus.OrderNumber).FirstOrDefaultAsync();
             data.AccountId = updateOrderStatus.AccountId;
             data.OrderNumber = updateOrderStatus.OrderNumber;
 
