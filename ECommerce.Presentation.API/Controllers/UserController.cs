@@ -1,5 +1,8 @@
 ﻿using ECommerce.Core.Application.DTOs.User;
 using ECommerce.Core.Application.Mediatr.Commands.User.Create;
+using ECommerce.Core.Application.Mediatr.Commands.User.Delete;
+using ECommerce.Core.Application.Mediatr.Commands.User.Update;
+using ECommerce.Core.Application.Mediatr.Queries.User.GetAll;
 using ECommerce.Core.Application.Repositories.UserRepositories;
 using ECommerce.Core.Domain.Entities;
 using MediatR;
@@ -26,21 +29,24 @@ namespace ECommerce.Presentation.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok();
+            GetAllUserQueryResponse response = await _mediator.Send(new GetAllUserQueryRequest());
+            return Ok(response);
         }
 
         [HttpPut]
-        public IActionResult Update(UpdateUser updateUser)
+        public async Task<IActionResult> Update(UpdateUserCommandRequest updateUser)
         {
-            return Ok();
+            UpdateUserCommandResponse response = await _mediator.Send(updateUser);
+            return Ok(response);
         }
 
         [HttpDelete]
-        public IActionResult Delete()
+        public async Task<IActionResult> Delete(DeleteUserCommandRequest deleteUser)
         {
-            return Ok();
+            DeleteUserCommandResponse response = await _mediator.Send(deleteUser);
+            return Ok(response);
         }
     }
 }

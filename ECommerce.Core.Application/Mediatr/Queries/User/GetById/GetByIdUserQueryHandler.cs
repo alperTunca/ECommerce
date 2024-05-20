@@ -9,7 +9,7 @@ namespace ECommerce.Core.Application.Mediatr.Queries.User.GetById
     {
         readonly IUserReadRepository _userReadRepo;
 
-		public GetByIdUserQueryHandler(IUserReadRepository userReadRepository, IMapper mapper) 
+		public GetByIdUserQueryHandler(IUserReadRepository userReadRepository) 
 		{
             _userReadRepo = userReadRepository;
 		}
