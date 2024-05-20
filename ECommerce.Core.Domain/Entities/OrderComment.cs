@@ -12,6 +12,7 @@ namespace ECommerce.Core.Domain.Entities
         //public int OrderId { get; set; }
         //public int UserId { get; set; }
         public string Comment { get; set; }
+        public int AccountId { get; set; }
 
         // TODO - Test
         // An ordercomment can belong to an order 

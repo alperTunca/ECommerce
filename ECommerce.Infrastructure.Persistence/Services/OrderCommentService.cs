@@ -1,7 +1,10 @@
 ﻿using System;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using ECommerce.Core.Application.Abstractions.Services;
 using ECommerce.Core.Application.DTOs.OrderComment;
 using ECommerce.Core.Application.Repositories.OrderCommentRepositories;
+using ECommerce.Core.Domain.Entities;
 
 namespace ECommerce.Infrastructure.Persistence.Services
 {
@@ -9,36 +12,51 @@ namespace ECommerce.Infrastructure.Persistence.Services
     {
         private readonly IOrderCommentReadRepository _orderCommentReadRepository;
         private readonly IOrderCommentWriteRepository _orderCommentWriteRepository;
+        private readonly IMapper _mapper;
 
-        public OrderCommentService(IOrderCommentReadRepository orderCommentReadRepository, IOrderCommentWriteRepository orderCommentWriteRepository)
+        public OrderCommentService(IOrderCommentReadRepository orderCommentReadRepository, IOrderCommentWriteRepository orderCommentWriteRepository, IMapper mapper)
         {
             _orderCommentReadRepository = orderCommentReadRepository;
             _orderCommentWriteRepository = orderCommentWriteRepository; 
+            _mapper = mapper;
         }
 
-        public Task<bool> CreateAsync(CreateOrderComment createOrderComment)
+        public async Task CreateAsync(CreateOrderComment createOrderComment)
         {
-            throw new NotImplementedException();
+            var mappedData = _mapper.Map<OrderComment>(createOrderComment);
+            await _orderCommentWriteRepository.AddAsync(mappedData);
+            await _orderCommentWriteRepository.SaveAsync();
         }
 
-        public Task<ListOrderComment> GetAllAsync()
+        public ListOrderComment GetAll()
         {
-            throw new NotImplementedException();
+            var result = _orderCommentReadRepository.GetAll();
+            var mappedData = _mapper.Map<ListOrderComment>(result);
+            return mappedData;
         }
 
-        public Task<SingleOrderComment> GetByIdAsync(int id)
+        public async Task<SingleOrderComment> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _orderCommentReadRepository.GetByIdAsync(id);
+            var mappedData = _mapper.Map<SingleOrderComment>(result);
+            return mappedData;
         }
 
-        public Task<bool> UpdateAsync(UpdateOrderComment updateOrderComment)
+        public async Task<bool> UpdateAsync(UpdateOrderComment updateOrderComment)
         {
-            throw new NotImplementedException();
+            var data = await _orderCommentReadRepository.GetByIdAsync(updateOrderComment.Id);
+            data.AccountId = updateOrderComment.AccountId;
+            data.OrderId = updateOrderComment.OrderId;
+            data.UserId = updateOrderComment.UserId;
+            var mappedData = _mapper.Map<OrderComment>(updateOrderComment);
+            var result = _orderCommentWriteRepository.Update(mappedData);
+            return result;
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _orderCommentWriteRepository.Remove(id);
+            return result;
         }
     }
 }

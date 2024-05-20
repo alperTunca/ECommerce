@@ -20,14 +20,14 @@ namespace ECommerce.Presentation.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateUser createUser)
         {
-            var user = _mediator.Send(createUser);
+            CreateUser user = _mediator.Send(createUser);
             return Ok();
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var list = _userReadRepo.GetAll();
+            var list = _mediator.Send<>();
             return Ok(list);
         }
 

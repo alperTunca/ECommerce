@@ -1,7 +1,10 @@
 ﻿using System;
+using AutoMapper;
 using ECommerce.Core.Application.Abstractions.Services;
 using ECommerce.Core.Application.DTOs.Order;
+using ECommerce.Core.Application.DTOs.OrderComment;
 using ECommerce.Core.Application.Repositories.OrderRepositories;
+using ECommerce.Core.Domain.Entities;
 
 namespace ECommerce.Infrastructure.Persistence.Services
 {
@@ -9,19 +12,23 @@ namespace ECommerce.Infrastructure.Persistence.Services
     {
         private readonly IOrderReadRepository _orderReadRepository;
         private readonly IOrderWriteRepository _orderWriteRepository;
+        private readonly IMapper _mapper;
 
-        public OrderService(IOrderReadRepository orderReadRepository, IOrderWriteRepository orderWriteRepository)
+        public OrderService(IOrderReadRepository orderReadRepository, IOrderWriteRepository orderWriteRepository, IMapper mapper)
         {
             _orderReadRepository = orderReadRepository;
             _orderWriteRepository = orderWriteRepository;
+            _mapper = mapper;
         }
 
         public Task<bool> CreateAsync(CreateOrder createOrder)
         {
-            throw new NotImplementedException();
+            var mappedData = _mapper.Map<Order>(createOrder);
+            var result = await _orderWriteRepository.AddAsync(mappedData);
+            return result;
         }
 
-        public Task<ListOrder> GetAllAsync()
+        public ListOrder GetAll()
         {
             throw new NotImplementedException();
         }

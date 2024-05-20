@@ -21,7 +21,7 @@ namespace ECommerce.Infrastructure.Persistence.Services
             throw new NotImplementedException();
         }
 
-        public Task<ListUser> GetAllAsync()
+        public ListUser GetAll()
         {
             throw new NotImplementedException();
         }
