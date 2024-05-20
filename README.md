@@ -28,6 +28,7 @@ Açıklama: Bir E-Ticaret satıcısı kendi web sitesinde ürünlerini satmaktad
 -	User_id
 -	Comment
 -	Created_at
+- Account_id
   
 **User table :**
 -	İd
