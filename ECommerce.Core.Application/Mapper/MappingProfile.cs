@@ -12,18 +12,19 @@ namespace ECommerce.Core.Application.Mapper
 	public class MappingProfile : Profile
 	{
 		public MappingProfile()
-		{
-			// TODO - Mapper nasıl çalışır ?
-			CreateMap<User, SingleUser>();
-			CreateMap<CreateUserCommandRequest, User>();
+        {
+            CreateMap<CreateUser, User>();
+            CreateMap<List<User>, ListUser>();
+            CreateMap<Order, SingleUser>();
 
-
-			CreateMap<CreateOrderComment, OrderComment>();
+            CreateMap<CreateOrderComment, OrderComment>();
 			CreateMap<List<OrderComment>, ListOrderComment>();
 			CreateMap<OrderComment, SingleOrderComment>();
 
-			CreateMap<CreateOrderCommandRequest,CreateOrder>();
-		}
+            CreateMap<CreateOrder, Order>();
+            CreateMap<List<Order>, ListOrder>();
+            CreateMap<Order, SingleOrder>();
+        }
 	}
 }
 

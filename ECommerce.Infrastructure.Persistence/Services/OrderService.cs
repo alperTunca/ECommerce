@@ -2,7 +2,6 @@
 using AutoMapper;
 using ECommerce.Core.Application.Abstractions.Services;
 using ECommerce.Core.Application.DTOs.Order;
-using ECommerce.Core.Application.DTOs.OrderComment;
 using ECommerce.Core.Application.Repositories.OrderRepositories;
 using ECommerce.Core.Domain.Entities;
 
@@ -21,36 +20,59 @@ namespace ECommerce.Infrastructure.Persistence.Services
             _mapper = mapper;
         }
 
-        public Task<bool> CreateAsync(CreateOrder createOrder)
+        public async Task CreateAsync(CreateOrder createOrder)
         {
             var mappedData = _mapper.Map<Order>(createOrder);
-            var result = await _orderWriteRepository.AddAsync(mappedData);
-            return result;
+            await _orderWriteRepository.AddAsync(mappedData);
+            await _orderWriteRepository.SaveAsync();
         }
 
         public ListOrder GetAll()
         {
-            throw new NotImplementedException();
+            var result = _orderReadRepository.GetAll().ToList();
+            var mappedData = _mapper.Map<ListOrder>(result);
+            return mappedData;
         }
 
-        public Task<SingleOrder> GetByIdAsync(int id)
+        public async Task<SingleOrder> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _orderReadRepository.GetByIdAsync(id);
+            var mappedData = _mapper.Map<SingleOrder>(result);
+            return mappedData;
         }
 
-        public Task<bool> UpdateAsync(UpdateOrder updateOrder)
+        public async Task UpdateAsync(UpdateOrder updateOrder)
         {
-            throw new NotImplementedException();
+            var data = await _orderReadRepository.GetByIdAsync(updateOrder.Id);
+            data.UserId = updateOrder.UserId;
+            data.AccountId = updateOrder.AccountId;
+            data.OrderNumber = updateOrder.OrderNumber;
+            data.OrderDate = updateOrder.OrderDate;
+            data.OrderType = updateOrder.OrderType;
+            data.Status = updateOrder.Status;
+            data.SalesChannel = updateOrder.SalesChannel;
+            data.City = updateOrder.City;
+            data.District = updateOrder.District;
+            data.Carrier = updateOrder.Carrier;
+
+            _orderWriteRepository.Update(data);
+            await _orderWriteRepository.SaveAsync();
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            await _orderWriteRepository.Remove(id);
+            await _orderWriteRepository.SaveAsync();
         }
 
-        public Task<bool> UpdateStatusAsync(UpdateStatusOrder updateOrderStatus)
+        public async Task UpdateStatusAsync(UpdateStatusOrder updateOrderStatus)
         {
-            throw new NotImplementedException();
+            var data = await _orderReadRepository.GetByIdAsync(updateOrderStatus.Id);
+            data.AccountId = updateOrderStatus.AccountId;
+            data.OrderNumber = updateOrderStatus.OrderNumber;
+
+            _orderWriteRepository.Update(data);
+            await _orderWriteRepository.SaveAsync();
         }
     }
 }

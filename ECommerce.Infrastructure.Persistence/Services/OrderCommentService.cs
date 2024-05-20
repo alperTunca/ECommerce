@@ -30,7 +30,7 @@ namespace ECommerce.Infrastructure.Persistence.Services
 
         public ListOrderComment GetAll()
         {
-            var result = _orderCommentReadRepository.GetAll();
+            var result = _orderCommentReadRepository.GetAll().ToList();
             var mappedData = _mapper.Map<ListOrderComment>(result);
             return mappedData;
         }
@@ -42,21 +42,20 @@ namespace ECommerce.Infrastructure.Persistence.Services
             return mappedData;
         }
 
-        public async Task<bool> UpdateAsync(UpdateOrderComment updateOrderComment)
+        public async Task UpdateAsync(UpdateOrderComment updateOrderComment)
         {
             var data = await _orderCommentReadRepository.GetByIdAsync(updateOrderComment.Id);
             data.AccountId = updateOrderComment.AccountId;
             data.OrderId = updateOrderComment.OrderId;
             data.UserId = updateOrderComment.UserId;
-            var mappedData = _mapper.Map<OrderComment>(updateOrderComment);
-            var result = _orderCommentWriteRepository.Update(mappedData);
-            return result;
+            _orderCommentWriteRepository.Update(data);
+            await _orderCommentWriteRepository.SaveAsync();
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            var result = await _orderCommentWriteRepository.Remove(id);
-            return result;
+            await _orderCommentWriteRepository.Remove(id);
+            await _orderCommentWriteRepository.SaveAsync();
         }
     }
 }

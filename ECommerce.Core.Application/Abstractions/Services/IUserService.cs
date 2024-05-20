@@ -5,10 +5,10 @@ namespace ECommerce.Core.Application.Abstractions.Services
 {
 	public interface IUserService
     {
-        Task<bool> CreateAsync(CreateUser createUser);
+        Task CreateAsync(CreateUser createUser);
         ListUser GetAll();
         Task<SingleUser> GetByIdAsync(int id);
-        Task<bool> UpdateAsync(UpdateUser updateUser);
-        Task<bool> DeleteAsync(int id);
+        Task UpdateAsync(UpdateUser updateUser);
+        Task DeleteAsync(int id);
     }
 }
