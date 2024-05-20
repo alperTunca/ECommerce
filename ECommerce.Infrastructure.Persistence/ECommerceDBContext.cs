@@ -38,6 +38,18 @@ namespace ECommerce.Infrastructure.Persistence
             .HasConversion<int>()
             .HasDefaultValue(OrderType.B2C); // Enum store as int 
 
+            modelBuilder.Entity<OrderComment>()
+            .Property(o => o.AccountId)
+            .IsRequired();
+
+            modelBuilder.Entity<OrderComment>()
+            .Property(o => o.OrderId)
+            .IsRequired();
+
+            modelBuilder.Entity<OrderComment>()
+            .Property(o => o.UserId)
+            .IsRequired();
+
             base.OnModelCreating(modelBuilder);
         }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

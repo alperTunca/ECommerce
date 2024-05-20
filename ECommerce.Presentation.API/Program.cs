@@ -7,6 +7,7 @@ using ECommerce.Core.Domain.Entities;
 using ECommerce.Infrastructure.Persistence;
 using ECommerce.Infrastructure.Service.Filters;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddControllers(x => x.Filters.Add<ValidationFilter>())
     .AddJsonOptions(options =>
-                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-//.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<CreateOrderCommentValidator>());
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateOrderCommentValidator>());
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -26,9 +27,6 @@ builder.Services.AddSwaggerGen();
 // Since the project was small-scale, service layer was not implemented.
 builder.Services.AddPersistenceServices();
 builder.Services.AddApplicationServices();
-
-builder.Services.AddTransient<IValidator<CreateOrderComment>, CreateOrderCommentValidator>();
-//builder.Services.AddTransient<IValidator<Product>, ProductValidator>();
 
 // For website access :)
 builder.Services.AddCors(opt =>
