@@ -35,6 +35,10 @@ namespace ECommerce.Infrastructure.Persistence
            .HasIndex(o => o.OrderNumber)
            .IsUnique();
 
+            modelBuilder.Entity<Order>()
+                .Property(o => o.OrderType)
+                .HasDefaultValue("B2C");
+
             base.OnModelCreating(modelBuilder);
         }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

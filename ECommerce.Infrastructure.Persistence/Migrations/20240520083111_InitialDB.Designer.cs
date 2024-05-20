@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ECommerce.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ECommerceDBContext))]
-    [Migration("20240520074951_InitialDB")]
+    [Migration("20240520083111_InitialDB")]
     partial class InitialDB
     {
         /// <inheritdoc />
@@ -59,7 +59,9 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
 
                     b.Property<string>("OrderType")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("B2C");
 
                     b.Property<int>("SalesChannel")
                         .HasColumnType("integer");
@@ -74,6 +76,12 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountId")
+                        .IsUnique();
+
+                    b.HasIndex("OrderNumber")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 

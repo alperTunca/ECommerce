@@ -13,7 +13,7 @@ namespace ECommerce.Core.Domain.Entities
         public int AccountId { get; set; }
         public int OrderNumber { get; set; }
         public DateTime OrderDate { get; set; }
-        public string OrderType { get; set; } = "B2C"; // Default B2C // TODO - Check DB record
+        public string OrderType { get; set; } // Default B2C
         public OrderStatus Status { get; set; } // Received InProgress Pick Pack Ship Delivered
         public int SalesChannel { get; set; }
         public int City { get; set; }

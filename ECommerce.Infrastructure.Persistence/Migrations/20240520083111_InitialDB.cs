@@ -39,7 +39,7 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                     AccountId = table.Column<int>(type: "integer", nullable: false),
                     OrderNumber = table.Column<int>(type: "integer", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    OrderType = table.Column<string>(type: "text", nullable: false),
+                    OrderType = table.Column<string>(type: "text", nullable: false, defaultValue: "B2C"),
                     Status = table.Column<int>(type: "integer", nullable: false),
                     SalesChannel = table.Column<int>(type: "integer", nullable: false),
                     City = table.Column<int>(type: "integer", nullable: false),
@@ -101,6 +101,18 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                 name: "IX_OrderComments_UserId",
                 table: "OrderComments",
                 column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_AccountId",
+                table: "Orders",
+                column: "AccountId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_OrderNumber",
+                table: "Orders",
+                column: "OrderNumber",
                 unique: true);
 
             migrationBuilder.CreateIndex(
