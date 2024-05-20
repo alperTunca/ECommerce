@@ -1,22 +1,26 @@
 ﻿using System;
 using ECommerce.Core.Application.Abstractions.Services;
+using ECommerce.Core.Application.Repositories.OrderRepositories;
 using MediatR;
 
 namespace ECommerce.Core.Application.Mediatr.Commands.Order.Delete
 {
 	public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommandRequest, DeleteOrderCommandResponse>
 	{
-		private readonly IOrderService _orderService;
+		private readonly IOrderWriteRepository _orderWriteRepository;
 
-		public DeleteOrderCommandHandler(IOrderService orderService)
-		{
-			_orderService = orderService;
-		}
+        public DeleteOrderCommandHandler(IOrderWriteRepository orderWriteRepository)
+        {
+            _orderWriteRepository = orderWriteRepository;
+        }
 
         public async Task<DeleteOrderCommandResponse> Handle(DeleteOrderCommandRequest request, CancellationToken cancellationToken)
         {
-			await _orderService.DeleteAsync(request.Id);
-			return new() { IsSuccess = true };
+            var result = false;
+            await _orderWriteRepository.Remove(request.Id);
+            await _orderWriteRepository.SaveAsync();
+            result = true;
+			return new() { IsSuccess = result };
         }
     }
 }

@@ -5,8 +5,10 @@ using MediatR;
 namespace ECommerce.Core.Application.Mediatr.Commands.Order.UpdateStatus
 {
 	public class UpdateStatusOrderCommandRequest : IRequest<UpdateStatusOrderCommandResponse>
-	{
+    {
+        public int Id { get; set; }
         public int AccountId { get; set; }
         public int OrderNumber { get; set; }
+        public int Status { get; set; }
     }
 }

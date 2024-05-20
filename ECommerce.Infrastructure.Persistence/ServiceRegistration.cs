@@ -43,12 +43,6 @@ namespace ECommerce.Infrastructure.Persistence
             services.AddScoped<IOrderCommentReadRepository, OrderCommentReadRepository>();
             services.AddScoped<IOrderCommentWriteRepository, OrderCommentWriteRepository>();
             #endregion
-
-            #region Services
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IOrderCommentService, OrderCommentService>();
-            #endregion
         }
     }
 }
