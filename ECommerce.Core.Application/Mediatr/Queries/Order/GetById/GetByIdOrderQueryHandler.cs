@@ -22,7 +22,7 @@ namespace ECommerce.Core.Application.Mediatr.Queries.Order.GetById
                 OrderNumber = data.OrderNumber,
                 OrderDate = data.OrderDate,
                 OrderType = data.OrderType,
-                Status = data.Status,
+                Status = (int)data.Status,
                 SalesChannel = data.SalesChannel,
                 City = data.City,
                 District = data.District,

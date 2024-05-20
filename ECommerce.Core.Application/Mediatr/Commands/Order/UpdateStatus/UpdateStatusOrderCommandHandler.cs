@@ -25,7 +25,6 @@ namespace ECommerce.Core.Application.Mediatr.Commands.Order.UpdateStatus
         {
             var result = false;
             var data = await _orderReadRepository.GetWhere(x => x.AccountId == request.AccountId && x.OrderNumber == request.OrderNumber).FirstOrDefaultAsync();
-            data.Id = request.Id;
             data.AccountId = request.AccountId;
             data.OrderNumber = request.OrderNumber;
             data.Status = request.Status;

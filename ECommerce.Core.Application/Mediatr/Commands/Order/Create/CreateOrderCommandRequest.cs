@@ -1,4 +1,5 @@
 ﻿using System;
+using ECommerce.Core.Domain.Enums;
 using MediatR;
 
 namespace ECommerce.Core.Application.Mediatr.Commands.Order.Create
@@ -10,7 +11,7 @@ namespace ECommerce.Core.Application.Mediatr.Commands.Order.Create
         public int OrderNumber { get; set; }
         public DateTime OrderDate { get; set; }
         public string OrderType { get; set; } // Default B2C
-        public int Status { get; set; } // Received InProgress Pick Pack Ship Delivered
+        public OrderStatus Status { get; set; } // Received InProgress Pick Pack Ship Delivered
         public int SalesChannel { get; set; }
         public int City { get; set; }
         public int District { get; set; }

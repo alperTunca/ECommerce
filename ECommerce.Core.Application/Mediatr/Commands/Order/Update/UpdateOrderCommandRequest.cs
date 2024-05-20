@@ -1,4 +1,5 @@
 ﻿using System;
+using ECommerce.Core.Domain.Enums;
 using MediatR;
 
 namespace ECommerce.Core.Application.Mediatr.Commands.Order.Update
@@ -11,7 +12,7 @@ namespace ECommerce.Core.Application.Mediatr.Commands.Order.Update
         public int OrderNumber { get; set; }
         public DateTime OrderDate { get; set; }
         public string OrderType { get; set; }
-        public int Status { get; set; }
+        public OrderStatus Status { get; set; }
         public int SalesChannel { get; set; }
         public int City { get; set; }
         public int District { get; set; }
