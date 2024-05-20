@@ -2,6 +2,7 @@
 using ECommerce.Core.Application.Repositories.OrderCommentRepositories;
 using ECommerce.Core.Application.Repositories.UserRepositories;
 using ECommerce.Core.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Presentation.API.Controllers
@@ -10,46 +11,28 @@ namespace ECommerce.Presentation.API.Controllers
     [ApiController]
     public class OrderCommentController : ControllerBase
     {
-        private readonly IOrderCommentReadRepository _orderCommentReadRepo;
-        private readonly IOrderCommentWriteRepository _orderCommentWriteRepo;
+        private readonly IMediator _mediator;
 
-        public OrderCommentController(IOrderCommentReadRepository orderCommentReadRepo, IOrderCommentWriteRepository orderCommentWriteRepo)
+        public OrderCommentController(IMediator mediator)
         {
-            _orderCommentReadRepo = orderCommentReadRepo;
-            _orderCommentWriteRepo = orderCommentWriteRepo;
+            _mediator = mediator;
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateOrderComment createOrderComment)
         {
-            var data = new OrderComment {
-                Comment = createOrderComment.Comment,
-                UserId = createOrderComment.UserId,
-                OrderId = createOrderComment.OrderId
-            };
-            await _orderCommentWriteRepo.AddAsync(data);
-            await _orderCommentWriteRepo.SaveAsync();
             return Ok();
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var list = _orderCommentReadRepo.GetAll();
-            return Ok(list);
+            return Ok();
         }
 
         [HttpPut]
         public async Task<IActionResult> Update(UpdateOrderComment updateOrderComment)
         {
-            var data = new OrderComment
-            {
-                UserId = updateOrderComment.UserId,
-                OrderId = updateOrderComment.OrderId,
-                Comment = updateOrderComment.Comment
-            };
-            _orderCommentWriteRepo.Update(data);
-            await _orderCommentWriteRepo.SaveAsync();
             return Ok();
         }
 

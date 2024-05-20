@@ -1,4 +1,5 @@
 ﻿using ECommerce.Core.Application.DTOs.User;
+using ECommerce.Core.Application.Mediatr.Commands.User.Create;
 using ECommerce.Core.Application.Repositories.UserRepositories;
 using ECommerce.Core.Domain.Entities;
 using MediatR;
@@ -18,17 +19,16 @@ namespace ECommerce.Presentation.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateUser createUser)
+        public async Task<IActionResult> Create(CreateUserCommandRequest createUser)
         {
-            CreateUser user = _mediator.Send(createUser);
-            return Ok();
+            CreateUserCommandResponse response = await _mediator.Send(createUser);
+            return Ok(response);
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var list = _mediator.Send<>();
-            return Ok(list);
+            return Ok();
         }
 
         [HttpPut]
