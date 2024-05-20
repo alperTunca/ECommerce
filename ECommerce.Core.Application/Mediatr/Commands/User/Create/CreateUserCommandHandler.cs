@@ -1,6 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using ECommerce.Core.Application.Abstractions.Services;
+using ECommerce.Core.Application.DTOs.User;
 using ECommerce.Core.Application.Repositories.UserRepositories;
 using MediatR;
 
