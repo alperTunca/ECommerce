@@ -1,10 +1,7 @@
-﻿using ECommerce.Core.Application.DTOs.User;
-using ECommerce.Core.Application.Mediatr.Commands.User.Create;
+﻿using ECommerce.Core.Application.Mediatr.Commands.User.Create;
 using ECommerce.Core.Application.Mediatr.Commands.User.Delete;
 using ECommerce.Core.Application.Mediatr.Commands.User.Update;
 using ECommerce.Core.Application.Mediatr.Queries.User.GetAll;
-using ECommerce.Core.Application.Repositories.UserRepositories;
-using ECommerce.Core.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

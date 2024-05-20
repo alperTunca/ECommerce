@@ -19,10 +19,7 @@ builder.Services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// TODO - Mediatr pattern implemente
-// Proje küçük çapta olduğu için service layer'ı yazmak yerine repo objeleri direk mediatr içinden erişilebilir yapıldı.
-// DB servisi dışında servisler dahil olsaydı layer ı eklemek daha mantıklı olurdu.
-
+// Since the project was small-scale, service layer was not implemented.
 builder.Services.AddPersistenceServices();
 builder.Services.AddApplicationServices();
 

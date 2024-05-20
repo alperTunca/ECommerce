@@ -1,7 +1,7 @@
-﻿using ECommerce.Core.Application.DTOs.OrderComment;
-using ECommerce.Core.Application.Repositories.OrderCommentRepositories;
-using ECommerce.Core.Application.Repositories.UserRepositories;
-using ECommerce.Core.Domain.Entities;
+﻿using ECommerce.Core.Application.Mediatr.Commands.OrderComment.Create;
+using ECommerce.Core.Application.Mediatr.Commands.OrderComment.Delete;
+using ECommerce.Core.Application.Mediatr.Commands.OrderComment.Update;
+using ECommerce.Core.Application.Mediatr.Queries.OrderComment.GetAll;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,27 +19,31 @@ namespace ECommerce.Presentation.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateOrderComment createOrderComment)
+        public async Task<IActionResult> Create(CreateOrderCommentCommandRequest createOrderComment)
         {
-            return Ok();
+            CreateOrderCommentCommandResponse response = await _mediator.Send(createOrderComment);
+            return Ok(response);
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok();
+            GetAllOrderCommentQueryResponse response = await _mediator.Send(new GetAllOrderCommentQueryRequest());
+            return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateOrderComment updateOrderComment)
+        public async Task<IActionResult> Update(UpdateOrderCommentCommandRequest updateOrderComment)
         {
-            return Ok();
+            UpdateOrderCommentCommandResponse response = await _mediator.Send(updateOrderComment);
+            return Ok(response);
         }
 
         [HttpDelete]
-        public IActionResult Delete()
+        public async Task<IActionResult> Delete(DeleteOrderCommentCommandRequest deleteOrder)
         {
-            return Ok();
+            DeleteOrderCommentCommandResponse response = await _mediator.Send(deleteOrder);
+            return Ok(response);
         }
     }
 }

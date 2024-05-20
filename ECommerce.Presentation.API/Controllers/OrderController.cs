@@ -1,7 +1,8 @@
-﻿using ECommerce.Core.Application.DTOs.Order;
-using ECommerce.Core.Application.Repositories.OrderRepositories;
-using ECommerce.Core.Application.Repositories.UserRepositories;
-using ECommerce.Core.Domain.Entities;
+﻿using ECommerce.Core.Application.Mediatr.Commands.Order.Create;
+using ECommerce.Core.Application.Mediatr.Commands.Order.Delete;
+using ECommerce.Core.Application.Mediatr.Commands.Order.Update;
+using ECommerce.Core.Application.Mediatr.Commands.Order.UpdateStatus;
+using ECommerce.Core.Application.Mediatr.Queries.Order.GetAll;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,33 +20,38 @@ namespace ECommerce.Presentation.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateOrder createOrder)
+        public async Task<IActionResult> Create(CreateOrderCommandRequest createOrder)
         {
-            return Ok();
+            CreateOrderCommandResponse response = await _mediator.Send(createOrder);
+            return Ok(response);
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok();
+            GetAllOrderQueryResponse response = await _mediator.Send(new GetAllOrderQueryRequest());
+            return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateOrder updateOrder)
+        public async Task<IActionResult> Update(UpdateOrderCommandRequest updateOrder)
         {
-            return Ok();
+            UpdateOrderCommandResponse response = await _mediator.Send(updateOrder);
+            return Ok(response);
         }
 
         [HttpDelete]
-        public IActionResult Delete()
+        public async Task<IActionResult> Delete(DeleteOrderCommandRequest deleteOrder)
         {
-            return Ok();
+            DeleteOrderCommandResponse response = await _mediator.Send(deleteOrder);
+            return Ok(response);
         }
 
         [HttpPut]
-        public IActionResult UpdateStatus(UpdateStatusOrder updateStatusOrder)
+        public async Task<IActionResult> UpdateStatus(UpdateStatusOrderCommandRequest updateStatusOrder)
         {
-            return Ok();
+            UpdateStatusOrderCommandResponse response = await _mediator.Send(updateStatusOrder);
+            return Ok(response);
         }
     }
 }
