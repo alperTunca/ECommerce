@@ -21,6 +21,22 @@ namespace ECommerce.Infrastructure.Persistence
             
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Order>()
+            .Property(o => o.Status)
+            .HasConversion<int>(); // Enum store as int 
+
+            modelBuilder.Entity<Order>()
+            .HasIndex(o => o.AccountId)
+            .IsUnique();
+
+            modelBuilder.Entity<Order>()
+           .HasIndex(o => o.OrderNumber)
+           .IsUnique();
+
+            base.OnModelCreating(modelBuilder);
+        }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             // DB interceptor for create and update times.

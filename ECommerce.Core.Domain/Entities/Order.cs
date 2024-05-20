@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECommerce.Core.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace ECommerce.Core.Domain.Entities
         public int OrderNumber { get; set; }
         public DateTime OrderDate { get; set; }
         public string OrderType { get; set; } = "B2C"; // Default B2C // TODO - Check DB record
-        public int Status { get; set; } // Received InProgress Pick Pack Ship Delivered
+        public OrderStatus Status { get; set; } // Received InProgress Pick Pack Ship Delivered
         public int SalesChannel { get; set; }
         public int City { get; set; }
         public int District { get; set; }
