@@ -21,9 +21,16 @@ namespace ECommerce.Core.Application.Mediatr.Commands.OrderComment.Create
         public async Task<CreateOrderCommentCommandResponse> Handle(CreateOrderCommentCommandRequest request, CancellationToken cancellationToken)
         {
             var result = false;
-			await _orderCommentWriteRepository.AddAsync(new() { AccountId = request.AccountId, UserId = request.UserId, OrderId = request.OrderId, Comment = request.Comment });
-            await _orderCommentWriteRepository.SaveAsync();
-            result = true;
+            try
+            {
+                await _orderCommentWriteRepository.AddAsync(new() { AccountId = request.AccountId, UserId = request.UserId, OrderId = request.OrderId, Comment = request.Comment });
+                await _orderCommentWriteRepository.SaveAsync();
+                result = true;
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
 			return new() { IsSuccess = result };
         }
     }

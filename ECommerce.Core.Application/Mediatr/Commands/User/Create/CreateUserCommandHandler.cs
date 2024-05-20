@@ -18,10 +18,17 @@ namespace ECommerce.Core.Application.Mediatr.Commands.User.Create
         public async Task<CreateUserCommandResponse> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
         {
             bool result = false;
-            await _userWriteRepository.AddAsync(new() { Email = request.Email, Password = request.Email, Username = request.Username});
-            
-            await _userWriteRepository.SaveAsync();
-            result = true;
+            try
+            {
+                await _userWriteRepository.AddAsync(new() { Email = request.Email, Password = request.Email, Username = request.Username });
+
+                await _userWriteRepository.SaveAsync();
+                result = true;
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
 
             return new() { IsSuccess = result };
         }

@@ -22,13 +22,20 @@ namespace ECommerce.Core.Application.Mediatr.Commands.User.Update
         public async Task<UpdateUserCommandResponse> Handle(UpdateUserCommandRequest request, CancellationToken cancellationToken)
         {
             var result = false;
-            var data = await _userReadRepository.GetByIdAsync(request.Id);
-            data.Username = request.Username;
-            data.Email = request.Email;
-            data.Password = request.Password;
-            _userWriteRepository.Update(data);
-            await _userWriteRepository.SaveAsync();
-            result = true;
+            try
+            {
+                var data = await _userReadRepository.GetByIdAsync(request.Id);
+                data.Username = request.Username;
+                data.Email = request.Email;
+                data.Password = request.Password;
+                _userWriteRepository.Update(data);
+                await _userWriteRepository.SaveAsync();
+                result = true;
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
             return new() { IsSuccess = result };
         }
     }

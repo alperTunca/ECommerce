@@ -8,7 +8,8 @@ namespace ECommerce.Core.Application.Validators.Order
 	public class UpdateStatusOrderValidator : AbstractValidator<UpdateStatusOrderCommandRequest>
 	{
 		public UpdateStatusOrderValidator()
-		{
+        {
+
             RuleFor(x => x.AccountId)
                 .NotEmpty()
                 .WithMessage("Hesap bilgisini doldurunuz.")

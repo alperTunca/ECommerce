@@ -22,21 +22,29 @@ namespace ECommerce.Core.Application.Mediatr.Commands.Order.Create
         public async Task<CreateOrderCommandResponse> Handle(CreateOrderCommandRequest request, CancellationToken cancellationToken)
         {
             var result = false;
-            await _orderWriteRepository.AddAsync(new() { 
-                UserId = request.UserId, 
-                AccountId = request.AccountId, 
-                OrderNumber = request.OrderNumber, 
-                OrderDate = request.OrderDate, 
-                OrderType = request.OrderType, 
-                Status = request.Status, 
-                SalesChannel = request.SalesChannel, 
-                City = request.City, 
-                District = request.District,
-                Carrier = request.Carrier 
-            });
-            await _orderWriteRepository.SaveAsync();
+            try
+            {
+                await _orderWriteRepository.AddAsync(new()
+                {
+                    UserId = request.UserId,
+                    AccountId = request.AccountId,
+                    OrderNumber = request.OrderNumber,
+                    OrderDate = request.OrderDate,
+                    OrderType = request.OrderType,
+                    Status = request.Status,
+                    SalesChannel = request.SalesChannel,
+                    City = request.City,
+                    District = request.District,
+                    Carrier = request.Carrier
+                });
+                await _orderWriteRepository.SaveAsync();
 
-            result = true;
+                result = true;
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
             return new() { IsSuccess = result };
         }
     }

@@ -24,14 +24,21 @@ namespace ECommerce.Core.Application.Mediatr.Commands.OrderComment.Update
         public async Task<UpdateOrderCommentCommandResponse> Handle(UpdateOrderCommentCommandRequest request, CancellationToken cancellationToken)
         {
             var result = false;
-            var data = await _orderCommentReadRepository.GetByIdAsync(request.Id);
-            data.AccountId = request.AccountId;
-            data.OrderId = request.OrderId;
-            data.UserId = request.UserId;
-            data.Comment = request.Comment;
-            _orderCommentWriteRepository.Update(data);
-            await _orderCommentWriteRepository.SaveAsync();
-            result = true;
+            try
+            {
+                var data = await _orderCommentReadRepository.GetByIdAsync(request.Id);
+                data.AccountId = request.AccountId;
+                data.OrderId = request.OrderId;
+                data.UserId = request.UserId;
+                data.Comment = request.Comment;
+                _orderCommentWriteRepository.Update(data);
+                await _orderCommentWriteRepository.SaveAsync();
+                result = true;
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
             return new() { IsSuccess = result };
         }
     }

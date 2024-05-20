@@ -13,6 +13,13 @@ namespace ECommerce.Core.Application.Validators.Order
     {
         public CreateOrderValidator()
         {
+
+            RuleFor(x => x.UserId)
+                .NotEmpty()
+                .WithMessage("Kullanıcı bilgisini doldurunuz.")
+                .NotNull()
+                .WithMessage("Kullanıcı bilgisini doldurunuz.");
+
             RuleFor(x => x.AccountId)
                 .NotEmpty()
                 .WithMessage("Hesap bilgisini doldurunuz.")
