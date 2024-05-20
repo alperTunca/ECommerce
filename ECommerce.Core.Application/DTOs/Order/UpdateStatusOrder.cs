@@ -14,5 +14,7 @@ namespace ECommerce.Core.Application.DTOs.Order
 
         [Required(ErrorMessage = "Sipariş numarası giriniz.")]
         public int OrderNumber { get; set; }
+
+        public int Status { get; set; }
     }
 }

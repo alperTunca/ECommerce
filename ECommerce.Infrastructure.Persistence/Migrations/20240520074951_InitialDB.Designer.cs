@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ECommerce.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ECommerceDBContext))]
-    [Migration("20240516224847_OneToManyTest")]
-    partial class OneToManyTest
+    [Migration("20240520074951_InitialDB")]
+    partial class InitialDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,8 +57,9 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                     b.Property<int>("OrderNumber")
                         .HasColumnType("integer");
 
-                    b.Property<int>("OrderType")
-                        .HasColumnType("integer");
+                    b.Property<string>("OrderType")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("SalesChannel")
                         .HasColumnType("integer");
@@ -87,6 +88,9 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AccountId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasColumnType("text");
@@ -107,6 +111,11 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("OrderComments");
                 });
@@ -156,8 +165,35 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ECommerce.Core.Domain.Entities.OrderComment", b =>
+                {
+                    b.HasOne("ECommerce.Core.Domain.Entities.Order", "Order")
+                        .WithMany("OrderComments")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECommerce.Core.Domain.Entities.User", "User")
+                        .WithOne("OrderComment")
+                        .HasForeignKey("ECommerce.Core.Domain.Entities.OrderComment", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ECommerce.Core.Domain.Entities.Order", b =>
+                {
+                    b.Navigation("OrderComments");
+                });
+
             modelBuilder.Entity("ECommerce.Core.Domain.Entities.User", b =>
                 {
+                    b.Navigation("OrderComment")
+                        .IsRequired();
+
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618

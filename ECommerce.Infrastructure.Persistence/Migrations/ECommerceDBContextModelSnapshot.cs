@@ -85,6 +85,9 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AccountId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasColumnType("text");
@@ -107,6 +110,9 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("OrderComments");
                 });
@@ -164,7 +170,15 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ECommerce.Core.Domain.Entities.User", "User")
+                        .WithOne("OrderComment")
+                        .HasForeignKey("ECommerce.Core.Domain.Entities.OrderComment", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Order");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ECommerce.Core.Domain.Entities.Order", b =>
@@ -174,6 +188,9 @@ namespace ECommerce.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("ECommerce.Core.Domain.Entities.User", b =>
                 {
+                    b.Navigation("OrderComment")
+                        .IsRequired();
+
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
